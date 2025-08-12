@@ -1,5 +1,14 @@
 package com.gabriberp.corruption;
 
+import com.gabriberp.corruption.Block.ModBlocks;
+import com.gabriberp.corruption.Entity.Client.Renderer.SentinelEggRenderer;
+import com.gabriberp.corruption.Entity.Client.Renderer.SentinelMediumRenderer;
+import com.gabriberp.corruption.Entity.Client.Renderer.SentinelRenderer;
+import com.gabriberp.corruption.Entity.Client.Renderer.SentinelSmallRenderer;
+import com.gabriberp.corruption.Entity.ModEntities;
+import com.gabriberp.corruption.Item.ModCreativeModeTabs;
+import com.gabriberp.corruption.Item.ModItems;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -34,6 +43,11 @@ public class CorruptionMod {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModCreativeModeTabs.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -60,6 +74,11 @@ public class CorruptionMod {
     static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
+
+            EntityRenderers.register(ModEntities.SENTINEL.get(), SentinelRenderer::new);
+            EntityRenderers.register(ModEntities.SENTINEL_MEDIUM.get(), SentinelMediumRenderer::new);
+            EntityRenderers.register(ModEntities.SENTINEL_SMALL.get(), SentinelSmallRenderer::new);
+            EntityRenderers.register(ModEntities.SENTINEL_EGG.get(), SentinelEggRenderer::new);
 
         }
     }

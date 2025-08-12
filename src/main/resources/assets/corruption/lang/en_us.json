@@ -1,0 +1,24 @@
+{
+  "item.corruption.corruption_fragment": "Corruption Fragment",
+  "item.corruption.corrupted_gold_ingot": "Corrupted Gold Ingot",
+  "item.corruption.obscurium": "Obscurium",
+  "item.corruption.umbritium": "Umbritium",
+  "item.corruption.umbritium_nugget": "Umbritium Nugget",
+  "item.corruption.sentinel_spawn_egg": "Sentinel Spawn Egg",
+  "item.corruption.corruption_egg_spawn_egg": "Corruption Blob Spawn Egg",
+
+  "block.corruption.corruption_block": "Corruption",
+  "block.corruption.corruption_nucleus": "Corruption Nucleus",
+  "block.corruption.corrupted_sculk": "Corrupted Sculk",
+  "block.corruption.budding_corruption": "Budding Corruption",
+  "block.corruption.corrupted_gold_block": "Corrupted Gold Block",
+
+  "creativetab.corruption.corruption_items": "Corruption Items",
+  "creativetab.corruption.corruption_blocks": "Corruption Blocks",
+  "creativetab.corruption.corruption_mobs": "Corruption Mobs",
+
+  "entity.mccourse.sentinel": "Sentinel",
+  "entity.mccourse.sentinel_medium": "Sentinel",
+  "entity.mccourse.sentinel_small": "Sentinel",
+  "entity.mccourse.sentinel_egg": "Corruption Blob"
+}
