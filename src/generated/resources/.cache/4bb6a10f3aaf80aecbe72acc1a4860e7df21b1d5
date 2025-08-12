@@ -1,0 +1,5 @@
+// 1.21	2025-08-11T11:05:13.5035124	Tags for minecraft:block mod id corruption
+b8cde65936df3ef6b20e2491eb206d371e1f3796 data/minecraft/tags/block/mineable/hoe.json
+3df6c344580bcda73bbde38818ce93b04895a15c data/minecraft/tags/block/mineable/pickaxe.json
+3df6c344580bcda73bbde38818ce93b04895a15c data/minecraft/tags/block/needs_diamond_tool.json
+b8cde65936df3ef6b20e2491eb206d371e1f3796 data/minecraft/tags/block/needs_iron_tool.json

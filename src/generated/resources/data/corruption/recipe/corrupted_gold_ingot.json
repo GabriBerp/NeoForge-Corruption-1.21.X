@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "corruption:corruption_fragment"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "corruption:corruption_fragment"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "corruption:corruption_fragment"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "corruption:corruption_fragment"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "corruption:corrupted_gold_ingot"
+  }
+}

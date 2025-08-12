@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:echo_shard"
+    },
+    "X": {
+      "item": "corruption:corruption_fragment"
+    }
+  },
+  "pattern": [
+    "BXB",
+    "XBX",
+    "BXB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "corruption:umbritium"
+  }
+}

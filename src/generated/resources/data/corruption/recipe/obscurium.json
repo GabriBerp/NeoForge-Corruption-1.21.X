@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "C": {
+      "item": "corruption:corrupted_gold_ingot"
+    },
+    "X": {
+      "item": "corruption:corruption_fragment"
+    }
+  },
+  "pattern": [
+    "BXB",
+    "XCX",
+    "BXB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "corruption:obscurium"
+  }
+}

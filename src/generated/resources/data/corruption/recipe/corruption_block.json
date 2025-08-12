@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "corruption:corruption_fragment"
+    },
+    "X": {
+      "item": "minecraft:sculk"
+    }
+  },
+  "pattern": [
+    "BX ",
+    "XB "
+  ],
+  "result": {
+    "count": 1,
+    "id": "corruption:corruption_block"
+  }
+}
