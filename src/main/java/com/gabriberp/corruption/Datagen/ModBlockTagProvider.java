@@ -20,6 +20,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.CORRUPTION_BLOCK.get())
+                .add(ModBlocks.CRYING_CORRUPTION_BLOCK.get())
                 .add(ModBlocks.CORRUPTED_GOLD_BLOCK.get())
                 .add(ModBlocks.BUDDING_CORRUPTION.get())
                 .add(ModBlocks.CORRUPTION_NUCLEUS.get());
@@ -32,6 +33,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.CORRUPTION_BLOCK.get())
+                .add(ModBlocks.CRYING_CORRUPTION_BLOCK.get())
                 .add(ModBlocks.CORRUPTED_GOLD_BLOCK.get())
                 .add(ModBlocks.BUDDING_CORRUPTION.get())
                 .add(ModBlocks.CORRUPTION_NUCLEUS.get());

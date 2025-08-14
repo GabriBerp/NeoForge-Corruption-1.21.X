@@ -27,10 +27,33 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CORRUPTED_GOLD_BLOCK.get());
+        dropSelf(ModBlocks.HANGING_CORRUPTION_ROOTS.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_BLOCK.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_STAIRS.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_SLAB.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_WALL.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_TILES.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_TILES_STAIRS.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_TILES_SLAB.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_TILES_WALL.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_BRICKS.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_BRICKS_STAIRS.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_BRICKS_SLAB.get());
+        dropSelf(ModBlocks.POLISHED_AMETHYST_BRICKS_WALL.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_BRICKS.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_BRICKS_STAIRS.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_BRICKS_SLAB.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_BRICKS_WALL.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_BLOCK.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_STAIRS.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_SLAB.get());
+        dropSelf(ModBlocks.POLISHED_CORRUPTION_WALL.get());
 
         add(ModBlocks.CORRUPTION_BLOCK.get(),
                 block -> createMultipleOreDrops(ModBlocks.CORRUPTION_BLOCK.get(), ModItems.CORRUPTION_FRAGMENT.get(), 0, 2));
 
+        add(ModBlocks.CRYING_CORRUPTION_BLOCK.get(),
+                block -> createMultipleOreDrops(ModBlocks.CORRUPTION_BLOCK.get(), ModItems.CORRUPTION_FRAGMENT.get(), 2, 4));
 
     }
 

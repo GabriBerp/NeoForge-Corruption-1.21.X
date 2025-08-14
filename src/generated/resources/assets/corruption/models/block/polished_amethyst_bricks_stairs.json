@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "corruption:block/polished_amethyst_bricks",
+    "side": "corruption:block/polished_amethyst_bricks",
+    "top": "corruption:block/polished_amethyst_bricks"
+  }
+}

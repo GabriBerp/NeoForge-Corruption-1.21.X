@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "corruption:block/polished_amethyst_tiles",
+    "side": "corruption:block/polished_amethyst_tiles",
+    "top": "corruption:block/polished_amethyst_tiles"
+  }
+}

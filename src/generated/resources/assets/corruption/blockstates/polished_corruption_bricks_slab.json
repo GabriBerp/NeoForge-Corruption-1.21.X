@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "corruption:block/polished_corruption_bricks_slab"
+    },
+    "type=double": {
+      "model": "corruption:block/polished_corruption_bricks"
+    },
+    "type=top": {
+      "model": "corruption:block/polished_corruption_bricks_slab_top"
+    }
+  }
+}

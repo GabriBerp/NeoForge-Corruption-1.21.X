@@ -1,15 +1,20 @@
 package com.gabriberp.corruption.Block.custom;
 
 import com.gabriberp.corruption.Block.ModBlocks;
+import com.gabriberp.corruption.Entity.ModEntities;
 import com.gabriberp.corruption.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+
+import java.util.List;
 
 public class CorruptionNucleusBlock extends Block {
     public CorruptionNucleusBlock(BlockBehaviour.Properties properties) {
@@ -25,7 +30,7 @@ public class CorruptionNucleusBlock extends Block {
             BlockPos targetPos = pos.relative(dir);
             BlockState targetState = level.getBlockState(targetPos);
 
-            if (ehBlocoValido(targetState) && random.nextFloat() < 0.45f) {
+            if (ehBlocoValido(targetState) && random.nextFloat() < 0.45f + (0.25 * sentinelasProx(level, pos, 10))) {
                 level.setBlock(targetPos, ModBlocks.CORRUPTED_SCULK.get().defaultBlockState(), 3);
             }
         }
@@ -97,5 +102,32 @@ public class CorruptionNucleusBlock extends Block {
                 state.is(Blocks.BONE_BLOCK) ||
                 state.is(Blocks.CRYING_OBSIDIAN) ||
                 state.is(Blocks.ANCIENT_DEBRIS);
+    }
+
+    int sentinelasProx(ServerLevel level, BlockPos pos, int maxDistance) {
+        // rodar só no servidor — normalmente ServerLevel já é servidor, mas fica seguro
+        if (level.isClientSide()) return 0;
+
+        // caixa cúbica para busca rápida (ainda aplicaremos checagem esférica)
+        AABB area = new AABB(
+                pos.getX() - maxDistance, pos.getY() - maxDistance, pos.getZ() - maxDistance,
+                pos.getX() + maxDistance + 1, pos.getY() + maxDistance + 1, pos.getZ() + maxDistance + 1
+        );
+
+        // Busca usando EntityType (evita precisar da Classe)
+        List<? extends Entity> encontrados = level.getEntities(
+                ModEntities.SENTINEL.get(),
+                area,
+                e -> {
+                    // Só vivos
+                    if (!e.isAlive()) return false;
+                    // Checagem esférica real (evita contar entidades nas bordas do cubo)
+                    double dx = e.getX() - (pos.getX() + 0.5);
+                    double dy = e.getY() - (pos.getY() + 0.5);
+                    double dz = e.getZ() - (pos.getZ() + 0.5);
+                    return (dx*dx + dy*dy + dz*dz) <= (double)maxDistance * (double)maxDistance;
+                }
+        );
+        return encontrados.size();
     }
 }

@@ -27,6 +27,9 @@ public class ModItems {
     public static final DeferredItem<Item> CORRUPTION_EGG_SPAWN_EGG = ITEMS.register("corruption_egg_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.SENTINEL_EGG,0x301e30, 0xa372a3,
                     new Item.Properties()));
+    public static final DeferredItem<Item> CORRUPTION_BUG_SPAWN_EGG = ITEMS.register("corruption_bug_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.CORRUPTION_BUG,0xb329a2, 0xff82f0,
+                    new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

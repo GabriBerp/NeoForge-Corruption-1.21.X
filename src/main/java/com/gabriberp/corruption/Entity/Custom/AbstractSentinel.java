@@ -1,10 +1,12 @@
 package com.gabriberp.corruption.Entity.Custom;
 
 import com.gabriberp.corruption.Block.ModBlocks;
+import com.gabriberp.corruption.Entity.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -12,8 +14,9 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class AbstractSentinel extends Monster {
+import java.util.List;
 
+public class AbstractSentinel extends Monster {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -66,5 +69,40 @@ public class AbstractSentinel extends Monster {
         }
 
         return false; // não encontrou blocos suficientes
+    }
+
+    @Override
+    public boolean isPushable() {
+        return false; // Bloqueia empurrão por colisão
+    }
+
+    @Override
+    protected void pushEntities() {
+        // Não faz nada — evita que outras entidades empurrem este mob
+    }
+
+    public boolean hasValidTargetNearby(Level level, LivingEntity origin, double radius) {
+        List<LivingEntity> entities = level.getEntitiesOfClass(
+                LivingEntity.class,
+                origin.getBoundingBox().inflate(radius),
+                e -> e != origin
+        );
+
+        for (LivingEntity entity : entities) {
+            if (isValidTarget(entity)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isValidTarget(LivingEntity entity) {
+        // Aqui você checa os tipos que devem ser ignorados
+        // Exemplo:
+        return !(entity instanceof SentinelEntity ||
+                entity instanceof SentinelMediumEntity ||
+                entity instanceof SentinelSmallEntity ||
+                entity instanceof SentinelEggEntity ||
+                entity instanceof CorruptionBugEntity);
     }
 }

@@ -28,7 +28,7 @@ public class CorruptedSculkBlock extends Block {
         float porc = (float) (0.25 + (0.25 * sentinelasProx(level, pos, 10)));
 
         // Verifica se está conectado a um CorruptionNucleus dentro de raio 5
-        if (!estaConectadoANucleus(level, pos, 5 + (sentinelasProx(level, pos, 10)))) {
+        if (!estaConectadoANucleus(level, pos, 5 + (sentinelasProx(level, pos, 10))) || (sentinelasProx(level, pos, 10)) >= 1) {
             return; // Não está conectado, não propaga nem transforma
         }
 
@@ -52,83 +52,47 @@ public class CorruptedSculkBlock extends Block {
 
         // Se >= 7, transforma em budding_corruption ou corruption_block
         if (count >= 7) {
-            if (random.nextFloat() < 0.25f) {
+            float chanc = random.nextFloat();
+            if (chanc < 0.25f) {
                 level.setBlock(pos, ModBlocks.BUDDING_CORRUPTION.get().defaultBlockState(), 3);
             } else {
-                level.setBlock(pos, ModBlocks.CORRUPTION_BLOCK.get().defaultBlockState(), 3);
-                if (random.nextFloat() < 0.05f && !estaConectadoANucleus(level, pos, 4 + (sentinelasProx(level, pos, 10))) && level.getBlockState(pos.above()).isAir()) {
-                    level.setBlock(pos.above(), ModBlocks.CORRUPTION_NUCLEUS.get().defaultBlockState(), 3);
+                if (chanc < 0.5f){
+                    if (level.getBlockState(pos.below()).isAir()){
+                        chanc = random.nextFloat();
+                        level.setBlock(pos, ModBlocks.CRYING_CORRUPTION_BLOCK.get().defaultBlockState(), 3);
+                        if (chanc < 0.5f) {
+                            level.setBlock(pos.below(), ModBlocks.HANGING_CORRUPTION_ROOTS.get().defaultBlockState(), 3);
+                        }
+                    }else{
+                        level.setBlock(pos, ModBlocks.CRYING_CORRUPTION_BLOCK.get().defaultBlockState(), 3);
+                    }
+                } else {
+                    chanc = random.nextFloat();
+                    level.setBlock(pos, ModBlocks.CORRUPTION_BLOCK.get().defaultBlockState(), 3);
+                    // 0.025% de chance de colocar um nucleus encima do bloco transformado (se o bloco for ar)
+                    if (chanc < 0.025f && level.getBlockState(pos.above()).isAir()) {
+                        level.setBlock(pos.above(), ModBlocks.CORRUPTION_NUCLEUS.get().defaultBlockState(), 3);
+                    } else {
+                        // Caso não consiga colocar o nucleus, tenta spawnar o SENTINEL_EGG
+                        if (chanc < 0.05f && level.getBlockState(pos.above()).isAir()) {
+                            var eggEntity = ModEntities.SENTINEL_EGG.get().create(level);
+                            if (eggEntity != null) {
+                                eggEntity.setPos(
+                                        pos.getX() + 0.5, // Centraliza no bloco
+                                        pos.getY() + 1,   // Em cima do bloco
+                                        pos.getZ() + 0.5
+                                );
+                                level.addFreshEntity(eggEntity);
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
     private boolean ehBlocoValido(BlockState state) {
-        return state.is(Blocks.GRASS_BLOCK) ||
-                state.is(Blocks.DIRT) ||
-                state.is(Blocks.COARSE_DIRT) ||
-                state.is(Blocks.PODZOL) ||
-                state.is(Blocks.MUD) ||
-                state.is(Blocks.MOSS_BLOCK) ||
-                state.is(Blocks.MYCELIUM) ||
-
-                state.is(Blocks.STONE) ||
-                state.is(Blocks.COBBLESTONE) ||
-                state.is(Blocks.GRANITE) ||
-                state.is(Blocks.DIORITE) ||
-                state.is(Blocks.ANDESITE) ||
-                state.is(Blocks.DEEPSLATE) ||
-                state.is(Blocks.TUFF) ||
-                state.is(Blocks.CALCITE) ||
-                state.is(Blocks.DRIPSTONE_BLOCK) ||
-
-                state.is(Blocks.GRAVEL) ||
-                state.is(Blocks.SAND) ||
-                state.is(Blocks.RED_SAND) ||
-                state.is(Blocks.CLAY) ||
-
-                state.is(Blocks.OBSIDIAN) ||
-                state.is(Blocks.END_STONE) ||
-                state.is(Blocks.NETHERRACK) ||
-                state.is(Blocks.SOUL_SAND) ||
-                state.is(Blocks.SOUL_SOIL) ||
-                state.is(Blocks.BROWN_MUSHROOM_BLOCK) ||
-                state.is(Blocks.RED_MUSHROOM_BLOCK) ||
-
-                state.is(Blocks.DIRT_PATH) ||
-                state.is(Blocks.ROOTED_DIRT) ||
-
-                state.is(Blocks.BLACKSTONE) ||
-                state.is(Blocks.GILDED_BLACKSTONE) ||
-                state.is(Blocks.BASALT) ||
-                state.is(Blocks.POLISHED_BASALT) ||
-
-                state.is(Blocks.SMOOTH_STONE) ||
-                state.is(Blocks.POLISHED_GRANITE) ||
-                state.is(Blocks.POLISHED_DIORITE) ||
-                state.is(Blocks.POLISHED_ANDESITE) ||
-
-                state.is(Blocks.DEEPSLATE_BRICKS) ||
-                state.is(Blocks.DEEPSLATE_TILES) ||
-
-                state.is(Blocks.STONE_BRICKS) ||
-                state.is(Blocks.MOSSY_STONE_BRICKS) ||
-                state.is(Blocks.CRACKED_STONE_BRICKS) ||
-                state.is(Blocks.CHISELED_STONE_BRICKS) ||
-
-                state.is(Blocks.END_STONE_BRICKS) ||
-                state.is(Blocks.PURPUR_BLOCK) ||
-                state.is(Blocks.QUARTZ_BLOCK) ||
-
-                state.is(Blocks.SMOOTH_QUARTZ) ||
-                state.is(Blocks.NETHER_BRICKS) ||
-                state.is(Blocks.RED_NETHER_BRICKS) ||
-                state.is(Blocks.CHISELED_NETHER_BRICKS) ||
-                state.is(Blocks.CRACKED_NETHER_BRICKS) ||
-
-                state.is(Blocks.BONE_BLOCK) ||
-                state.is(Blocks.CRYING_OBSIDIAN) ||
-                state.is(Blocks.ANCIENT_DEBRIS);
+        return state.is(ModTags.Blocks.INFECTABLE_BLOCKS);
     }
 
     boolean estaConectadoANucleus(ServerLevel level, BlockPos startPos, int maxDistance) {
@@ -185,16 +149,6 @@ public class CorruptedSculkBlock extends Block {
                     return (dx*dx + dy*dy + dz*dz) <= (double)maxDistance * (double)maxDistance;
                 }
         );
-
-        // DEBUG
-        for (Entity e : encontrados) {
-            System.out.println("Sentinela encontrada -> id=" + e.getId()
-                    + " uuid=" + e.getUUID()
-                    + " pos=" + e.blockPosition()
-                    + " type=" + e.getType());
-        }
-
-        System.out.println("Bloco: " + pos + " tem " + encontrados.size() + " sentinelas perto.");
         return encontrados.size();
     }
 }

@@ -40,10 +40,32 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.corruption.corruption_blocks"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.CORRUPTION_BLOCK);
+                        output.accept(ModBlocks.CRYING_CORRUPTION_BLOCK);
+                        output.accept(ModBlocks.HANGING_CORRUPTION_ROOTS);
                         output.accept(ModBlocks.CORRUPTION_NUCLEUS);
                         output.accept(ModBlocks.BUDDING_CORRUPTION);
                         output.accept(ModBlocks.CORRUPTED_SCULK);
                         output.accept(ModBlocks.CORRUPTED_GOLD_BLOCK);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_BRICKS);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_BRICKS_SLAB);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_BRICKS_STAIRS);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_BRICKS_WALL);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_BLOCK);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_SLAB);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_STAIRS);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_WALL);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_TILES);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_TILES_SLAB);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_TILES_STAIRS);
+                        output.accept(ModBlocks.POLISHED_AMETHYST_TILES_WALL);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_BRICKS);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_BRICKS_SLAB);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_BRICKS_STAIRS);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_BRICKS_WALL);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_BLOCK);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_SLAB);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_STAIRS);
+                        output.accept(ModBlocks.POLISHED_CORRUPTION_WALL);
                     })
 
                     .build());
@@ -56,6 +78,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.SENTINEL_SPAWN_EGG);
                         output.accept(ModItems.CORRUPTION_EGG_SPAWN_EGG);
+                        output.accept(ModItems.CORRUPTION_BUG_SPAWN_EGG);
                     })
 
                     .build());

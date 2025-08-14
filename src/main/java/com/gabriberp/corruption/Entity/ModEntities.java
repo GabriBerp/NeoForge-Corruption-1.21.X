@@ -1,10 +1,7 @@
 package com.gabriberp.corruption.Entity;
 
 import com.gabriberp.corruption.CorruptionMod;
-import com.gabriberp.corruption.Entity.Custom.SentinelEggEntity;
-import com.gabriberp.corruption.Entity.Custom.SentinelEntity;
-import com.gabriberp.corruption.Entity.Custom.SentinelMediumEntity;
-import com.gabriberp.corruption.Entity.Custom.SentinelSmallEntity;
+import com.gabriberp.corruption.Entity.Custom.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -41,6 +38,12 @@ public class ModEntities {
                     () -> EntityType.Builder.of(SentinelEggEntity::new, MobCategory.MONSTER)
                             .sized(1.0f,1.0f)
                             .build("sentinel_egg"));
+
+    public static final Supplier<EntityType<CorruptionBugEntity>> CORRUPTION_BUG =
+            ENTITY_TYPES.register("corruption_bug",
+                    () -> EntityType.Builder.of(CorruptionBugEntity::new, MobCategory.MONSTER)
+                            .sized(1.25f,1.25f)
+                            .build("corruption_bug"));
 
 
 

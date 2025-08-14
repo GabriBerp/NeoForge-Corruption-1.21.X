@@ -1,6 +1,7 @@
 {
   "values": [
     "corruption:corruption_block",
+    "corruption:crying_corruption_block",
     "corruption:corrupted_gold_block",
     "corruption:budding_corruption",
     "corruption:corruption_nucleus"

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "corruption:sentinel",
+    "corruption:sentinel_medium",
+    "corruption:sentinel_small",
+    "corruption:sentinel_egg",
+    "corruption:corruption_bug"
+  ]
+}

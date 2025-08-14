@@ -1,14 +1,14 @@
 package com.gabriberp.corruption;
 
 import com.gabriberp.corruption.Block.ModBlocks;
-import com.gabriberp.corruption.Entity.Client.Renderer.SentinelEggRenderer;
-import com.gabriberp.corruption.Entity.Client.Renderer.SentinelMediumRenderer;
-import com.gabriberp.corruption.Entity.Client.Renderer.SentinelRenderer;
-import com.gabriberp.corruption.Entity.Client.Renderer.SentinelSmallRenderer;
+import com.gabriberp.corruption.Entity.Client.Renderer.*;
 import com.gabriberp.corruption.Entity.ModEntities;
 import com.gabriberp.corruption.Item.ModCreativeModeTabs;
 import com.gabriberp.corruption.Item.ModItems;
+import com.gabriberp.corruption.util.ModTags;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ItemStack;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -80,6 +80,7 @@ public class CorruptionMod {
             EntityRenderers.register(ModEntities.SENTINEL_SMALL.get(), SentinelSmallRenderer::new);
             EntityRenderers.register(ModEntities.SENTINEL_EGG.get(), SentinelEggRenderer::new);
 
+            EntityRenderers.register(ModEntities.CORRUPTION_BUG.get(), CorruptionBugRenderer::new);
         }
     }
 }
